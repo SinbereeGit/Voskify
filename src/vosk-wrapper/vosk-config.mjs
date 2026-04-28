@@ -9,8 +9,5 @@ export const VOSK_LOG_LEVEL = {
 };
 
 export const VoskConfig = {
-  /**
-   * This is a fake function, because we have set the log level to {@link VOSK_LOG_LEVEL.SILENT} by default and it can not be changed.
-   */
   setLogLevel: (level) => VoskFunctions.vosk_set_log_level(level),
 };
