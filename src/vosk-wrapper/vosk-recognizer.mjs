@@ -77,6 +77,29 @@ export class VoskRecognizer {
     );
   }
 
+  getPartialResult() {
+    if (!this.recognizer)
+      throw new Error(
+        "Recognizer is not initialized or has already been freed.",
+      );
+
+    return JSON.parse(
+      VoskFunctions.vosk_recognizer_partial_result(this.recognizer),
+    );
+  }
+
+  getResult() {
+    if (!this.recognizer)
+      throw new Error(
+        "Recognizer is not initialized or has already been freed.",
+      );
+
+    return JSON.parse(VoskFunctions.vosk_recognizer_result(this.recognizer));
+  }
+
+  /**
+   * Same as result, but it flushes the feature pipeline
+   */
   getFinalResult() {
     if (!this.recognizer)
       throw new Error(

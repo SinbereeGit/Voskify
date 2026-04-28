@@ -30,14 +30,56 @@ describe(VoskRecognizer.name, function () {
     });
   });
 
-  describe(`${VoskRecognizer.prototype.acceptWaveform.name} and ${VoskRecognizer.prototype.getFinalResult.name}`, function () {
-    it("accepts audio in multiple chunks and gets the final result", async function () {
+  describe(`${VoskRecognizer.prototype.acceptWaveform.name}`, function () {
+    it("should accept and process a WAV file, and allow multiple calls to accumulate audio data", async function () {
       const recognizer = voskModel.createRecognizer();
       await recognizer.acceptWaveform(TEST_AUDIO_FILE);
       await recognizer.acceptWaveform(TEST_AUDIO_FILE);
       const result = recognizer.getFinalResult();
       expect(result.text.startsWith(TEST_AUDIO_TEXT)).to.be.true;
       expect(result.text.length).to.be.greaterThan(TEST_AUDIO_TEXT.length);
+      recognizer.free();
+    });
+  });
+
+  describe(VoskRecognizer.prototype.getFinalResult.name, function () {
+    it("should retrieve the completed utterance and reset the recognizer", async function () {
+      const recognizer = voskModel.createRecognizer();
+      await recognizer.acceptWaveform(TEST_AUDIO_FILE);
+      expect((recognizer.getFinalResult()).text).to.be.equal(TEST_AUDIO_TEXT);
+      await recognizer.acceptWaveform(TEST_AUDIO_FILE);
+      expect((recognizer.getFinalResult()).text).to.be.equal(TEST_AUDIO_TEXT);
+      recognizer.free();
+    });
+  });
+
+  describe(VoskRecognizer.prototype.getPartialResult.name, function () {
+    it("should retrieve the completed utterance without consuming it or altering the recognizer state", async function () {
+      const recognizer = voskModel.createRecognizer();
+      await recognizer.acceptWaveform(TEST_AUDIO_FILE);
+      expect((recognizer.getPartialResult()).partial).not.to.be.equal("");
+      expect((recognizer.getFinalResult()).text).to.be.equal(TEST_AUDIO_TEXT);
+      recognizer.free();
+    });
+
+    it("should not guarantee the partial result matches the final result", async function () {
+      const recognizer = voskModel.createRecognizer();
+      await recognizer.acceptWaveform(TEST_AUDIO_FILE);
+      expect((recognizer.getPartialResult()).partial).not.to.be.equal(TEST_AUDIO_TEXT);
+      expect((recognizer.getFinalResult()).text).to.be.equal(TEST_AUDIO_TEXT);
+      recognizer.free();
+    });
+  });
+
+  describe(VoskRecognizer.prototype.getResult.name, function () {
+    it("should retrieve and consume the completed utterance without altering the recognizer state", async function () {
+      const recognizer = voskModel.createRecognizer();
+      await recognizer.acceptWaveform(TEST_AUDIO_FILE);
+      expect((recognizer.getResult()).text).to.be.equal(TEST_AUDIO_TEXT);
+      expect((recognizer.getResult()).text).to.be.equal("");
+      await recognizer.acceptWaveform(TEST_AUDIO_FILE);
+      expect((recognizer.getResult()).text).not.to.be.equal(TEST_AUDIO_TEXT);
+      expect((recognizer.getFinalResult()).text).to.be.equal("");
       recognizer.free();
     });
   });
