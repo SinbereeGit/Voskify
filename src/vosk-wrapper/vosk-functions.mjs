@@ -1,6 +1,20 @@
+import path from "path";
+import { fileURLToPath } from "url";
+
 import koffi from "koffi";
 
-const voskLib = koffi.load("./vosk-lib/vosk-win64-0.3.45/libvosk.dll");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const dllPath = path.join(
+  __dirname,
+  "..",
+  "..",
+  "vosk-lib",
+  "vosk-win64-0.3.45",
+  "libvosk.dll",
+);
+const voskLib = koffi.load(dllPath);
 
 export const VoskFunctions = {
   assertExistence() {
@@ -30,11 +44,15 @@ export const VoskFunctions = {
   /**
    * `(void *recognizer) => void`
    */
-  vosk_recognizer_free: voskLib.func("vosk_recognizer_free", "void", ["void *"]),
+  vosk_recognizer_free: voskLib.func("vosk_recognizer_free", "void", [
+    "void *",
+  ]),
   /**
    * `(void *recognizer) => void`
    */
-  vosk_recognizer_reset: voskLib.func("vosk_recognizer_reset", "void", ["void *"]),
+  vosk_recognizer_reset: voskLib.func("vosk_recognizer_reset", "void", [
+    "void *",
+  ]),
   /**
    * `(void *recognizer, char *data, int len) => int`
    */
