@@ -1,0 +1,18 @@
+{
+  "name": "asr-via-vosk",
+  "version": "0.0.1",
+  "author": "sinber",
+  "license": "MIT",
+  "scripts": {
+    "test": "mocha",
+    "test:exclude-slow": "mocha --ignore \"test/**/*.slow.spec.{mjs,js,cjs}\""
+  },
+  "dependencies": {
+    "koffi": "^2.16.1",
+    "wavefile": "^11.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^11.7.5",
+    "chai": "^6.2.2"
+  }
+}
