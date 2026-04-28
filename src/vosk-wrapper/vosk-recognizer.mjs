@@ -43,7 +43,7 @@ export class VoskRecognizer {
   }
 
   /**
-   * Allow repeated calls to free, but do nothing if already freed.
+   * Allow repeated calls to free, but do nothing if already freed
    */
   free() {
     if (!this.recognizer) return;
@@ -52,6 +52,9 @@ export class VoskRecognizer {
     this.recognizer = null;
   }
 
+  /**
+   * Resets the recognizer state
+   */
   reset() {
     if (!this.recognizer)
       throw new Error(
@@ -61,6 +64,9 @@ export class VoskRecognizer {
     VoskFunctions.vosk_recognizer_reset(this.recognizer);
   }
 
+  /**
+   * Accept and process a WAV file, and allow multiple calls to accumulate audio data
+   */
   async acceptWaveform(wavFilePath) {
     if (!this.recognizer)
       throw new Error(
@@ -77,6 +83,9 @@ export class VoskRecognizer {
     );
   }
 
+  /**
+   * Retrieve the completed utterance without consuming it or altering the recognizer state
+   */
   getPartialResult() {
     if (!this.recognizer)
       throw new Error(
@@ -88,6 +97,9 @@ export class VoskRecognizer {
     );
   }
 
+  /**
+   * Retrieve and consume the completed utterance without altering the recognizer state
+   */
   getResult() {
     if (!this.recognizer)
       throw new Error(
@@ -98,7 +110,7 @@ export class VoskRecognizer {
   }
 
   /**
-   * Same as result, but it flushes the feature pipeline
+   * Retrieve the completed utterance and reset the recognizer
    */
   getFinalResult() {
     if (!this.recognizer)
