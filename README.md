@@ -6,7 +6,7 @@
 
 </div>
 
-Lightweight offline speech-to-text for WAV files with Vosk.
+A Node.js wrapper for Vosk via koffi.
 
 ## ✨ Features
 

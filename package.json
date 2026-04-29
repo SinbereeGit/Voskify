@@ -1,7 +1,7 @@
 {
   "name": "voskify",
   "version": "0.0.1",
-  "description": "Lightweight offline speech-to-text for WAV files with Vosk.",
+  "description": "A Node.js wrapper for Vosk via koffi.",
   "type": "module",
   "main": "src/index.mjs",
   "exports": {
