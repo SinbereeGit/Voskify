@@ -6,7 +6,7 @@ import { VoskFunctions } from "./vosk-functions.mjs";
 
 const VOSK_SAMPLE_RATE = 16000;
 
-async function loadWavFile(wavFilePath) {
+export async function loadWavFile(wavFilePath) {
   const wavBuffer = await readFile(wavFilePath);
   const wav = new wavefile.WaveFile(wavBuffer);
 
@@ -69,15 +69,26 @@ export class VoskRecognizer {
   }
 
   /**
-   * Accept and process a WAV file, and allow multiple calls to accumulate audio data
+   * Accept and process a WAV file or a Buffer containing PCM data, and allow multiple calls to accumulate audio data
+   *
+   * **Note: if using a Buffer, it must contain raw PCM data, and the sample rate must be 16000 Hz, mono, and 16-bit.**
    */
-  async acceptWaveform(wavFilePath) {
+  async acceptWaveform(wavFilePathOrBuffer) {
     if (!this.recognizer)
       throw new Error(
         "Recognizer is not initialized or has already been freed.",
       );
 
-    const pcmBuffer = await loadWavFile(wavFilePath);
+    let pcmBuffer;
+    if (Buffer.isBuffer(wavFilePathOrBuffer)) {
+      pcmBuffer = wavFilePathOrBuffer;
+    } else if (typeof wavFilePathOrBuffer === "string") {
+      pcmBuffer = await loadWavFile(wavFilePathOrBuffer);
+    } else {
+      throw new Error(
+        "Invalid input: expected a file path string or a Buffer containing PCM data.",
+      );
+    }
 
     return VoskFunctions.vosk_recognizer_accept_waveform(
       this.recognizer,
