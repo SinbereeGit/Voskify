@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.0
+
+### Minor Changes
+
+- e8d0a51: Extend `acceptWaveform` to support raw PCM Buffer input in addition to WAV files
+
+### Patch Changes
+
+- 13b82d7: Optimize package contents by excluding unnecessary files from npm publish
+
 ## 0.0.1 - 2026-04-29
 
 ### Major Changes
