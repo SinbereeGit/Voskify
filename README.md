@@ -1,26 +1,22 @@
-<div align="center">
-
 # Voskify
 
 ![npm version](https://img.shields.io/npm/v/voskify)
 
-</div>
-
 A Node.js wrapper for Vosk via koffi.
 
-## ✨ Features
+## Features
 
-- 🚀 **Zero compilation** – No `node-gyp` hassle.
-- 📡 **Fully offline** – All speech recognition runs locally, no network required.
-- 🎙️ **WAV in, text out** – Accepts standard `.wav` files and returns recognized text in a few lines of code.
+- **Zero compilation** – No `node-gyp` hassle.
+- **Fully offline** – All speech recognition runs locally, no network required.
+- **WAV in, text out** – Accepts standard `.wav` files and returns recognized text in a few lines of code.
 
-## 📦 Installation
+## Installation
 
 ```bash
 npm install voskify
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 Download a Vosk model (e.g. `vosk-model-small-en-us-0.15`) from the [Vosk models page](https://alphacephei.com/vosk/models) and place it in a local `models` directory. Then use the following code to transcribe a WAV file:
 
@@ -37,11 +33,11 @@ console.log(recognizer.getFinalResult());
 model.free();
 ```
 
-## 🧱 Limitations
+## Limitations
 
 - Only Windows is supported.
 
-## 🙏 Acknowledgements
+## Acknowledgements
 
 Thanks to the following open-source projects:
 
