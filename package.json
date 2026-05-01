@@ -11,7 +11,7 @@
   "license": "MIT",
   "files": [
     "src",
-    "vosk-lib",
+    "vosk-lib/**/*.dll",
     "README.md",
     "LICENSE",
     "CHANGELOG.md"
