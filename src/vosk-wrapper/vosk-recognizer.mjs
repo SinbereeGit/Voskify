@@ -31,7 +31,11 @@ async function loadWavFile(wavFilePath) {
     return audioData[0];
   }
 
-  return audioData;
+  return Buffer.from(
+    audioData.buffer,
+    audioData.byteOffset,
+    audioData.byteLength,
+  );
 }
 
 export class VoskRecognizer {
@@ -73,8 +77,7 @@ export class VoskRecognizer {
         "Recognizer is not initialized or has already been freed.",
       );
 
-    const monoAudioData = await loadWavFile(wavFilePath);
-    const pcmBuffer = Buffer.from(monoAudioData.buffer);
+    const pcmBuffer = await loadWavFile(wavFilePath);
 
     return VoskFunctions.vosk_recognizer_accept_waveform(
       this.recognizer,
