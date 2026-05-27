@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.0
+
+### Minor Changes
+
+- 0c555b2: Add Linux x64 support with automatic platform detection for native library loading.
+
 ## 0.1.0
 
 ### Minor Changes
