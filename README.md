@@ -35,7 +35,7 @@ model.free();
 
 ## Limitations
 
-- Only Windows is supported.
+- Only Windows x64 and Linux x64 are supported.
 
 ## Acknowledgements
 
