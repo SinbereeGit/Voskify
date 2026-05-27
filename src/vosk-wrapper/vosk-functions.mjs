@@ -1,18 +1,31 @@
 import path from "path";
 import { fileURLToPath } from "url";
+import os from "os";
 
 import koffi from "koffi";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const platform = os.platform();
+const arch = os.arch();
+
+const isWindows = platform === "win32" && arch === "x64";
+const isLinux = platform === "linux" && arch === "x64";
+
+if (!isWindows && !isLinux) {
+  throw new Error(
+    `Unsupported platform: ${platform} ${arch}. Only Windows x64 and Linux x64 are supported.`,
+  );
+}
+
 const dllPath = path.join(
   __dirname,
   "..",
   "..",
   "vosk-lib",
-  "vosk-win64-0.3.45",
-  "libvosk.dll",
+  isWindows ? "vosk-win64-0.3.45" : "vosk-linux-x86_64-0.3.45",
+  `libvosk.${isWindows ? "dll" : "so"}`,
 );
 const voskLib = koffi.load(dllPath);
 

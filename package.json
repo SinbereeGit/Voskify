@@ -12,6 +12,7 @@
   "files": [
     "src",
     "vosk-lib/**/*.dll",
+    "vosk-lib/**/*.so",
     "README.md",
     "LICENSE",
     "CHANGELOG.md"
