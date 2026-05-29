@@ -33,9 +33,11 @@ console.log(recognizer.getFinalResult());
 model.free();
 ```
 
-## Limitations
+## Supported Platforms
 
-- Only Windows x64 and Linux x64 are supported.
+- Windows x64
+- Linux x64
+- macOS (untested, but should work)
 
 ## Acknowledgements
 

@@ -13,6 +13,7 @@
     "src",
     "vosk-lib/**/*.dll",
     "vosk-lib/**/*.so",
+    "vosk-lib/**/*.dylib",
     "README.md",
     "LICENSE",
     "CHANGELOG.md"

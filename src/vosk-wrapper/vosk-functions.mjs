@@ -10,13 +10,12 @@ const __dirname = path.dirname(__filename);
 const platform = os.platform();
 const arch = os.arch();
 
-const isWindows = platform === "win32" && arch === "x64";
-const isLinux = platform === "linux" && arch === "x64";
+const isSupportedWindows = platform === "win32" && arch === "x64";
+const isSupportedLinux = platform === "linux" && arch === "x64";
+const isSupportedMac = platform === "darwin";
 
-if (!isWindows && !isLinux) {
-  throw new Error(
-    `Unsupported platform: ${platform} ${arch}. Only Windows x64 and Linux x64 are supported.`,
-  );
+if (!isSupportedWindows && !isSupportedLinux && !isSupportedMac) {
+  throw new Error(`Unsupported platform: ${platform} ${arch}.`);
 }
 
 const dllPath = path.join(
@@ -24,8 +23,12 @@ const dllPath = path.join(
   "..",
   "..",
   "vosk-lib",
-  isWindows ? "vosk-win64-0.3.45" : "vosk-linux-x86_64-0.3.45",
-  `libvosk.${isWindows ? "dll" : "so"}`,
+  isSupportedWindows
+    ? "vosk-win64-0.3.45"
+    : isSupportedMac
+    ? "vosk-osx-0.3.42"
+    : "vosk-linux-x86_64-0.3.45",
+  `libvosk.${isSupportedWindows ? "dll" : isSupportedMac ? "dylib" : "so"}`,
 );
 const voskLib = koffi.load(dllPath);
 
