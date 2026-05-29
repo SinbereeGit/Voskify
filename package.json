@@ -14,6 +14,7 @@
     "vosk-lib/**/*.dll",
     "vosk-lib/**/*.so",
     "vosk-lib/**/*.dylib",
+    "scripts",
     "README.md",
     "LICENSE",
     "CHANGELOG.md"
@@ -40,7 +41,8 @@
     "test:exclude-slow": "mocha --ignore \"test/**/*.slow.spec.{mjs,js,cjs}\"",
     "zip": "bestzip zips/voskify.zip src/* vosk-lib package.json package-lock.json",
     "changeset": "changeset",
-    "release:prepare": "changeset version"
+    "release:prepare": "changeset version",
+    "postinstall": "node scripts/postinstall.mjs"
   },
   "dependencies": {
     "koffi": "^2.16.1",

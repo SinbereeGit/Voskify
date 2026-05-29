@@ -39,6 +39,14 @@ model.free();
 - Linux x64
 - macOS (untested, but should work)
 
+## Postinstall
+
+This package bundles pre-built Vosk binaries for Windows, macOS, and Linux.
+
+After installation, it automatically keeps only the binary for your current platform and removes the other two. This saves about 37-92MB of disk space — you don't need to do anything.
+
+> If you prefer to skip this cleanup (e.g., in CI environments), install with `--ignore-scripts`. The package will still work normally; the only difference is that all three platform binaries will remain on disk, resulting in larger disk usage. You can also delete the unnecessary folders manually under `node_modules/voskify/vosk-lib/` — the result is the same.
+
 ## Acknowledgements
 
 Thanks to the following open-source projects:
