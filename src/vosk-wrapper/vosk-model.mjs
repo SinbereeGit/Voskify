@@ -19,6 +19,9 @@ export class VoskModel {
     this.model = null;
   }
 
+  /**
+   * @returns {VoskRecognizer}
+   */
   createRecognizer() {
     if (!this.model)
       throw new Error("Model is not initialized or has already been freed.");
