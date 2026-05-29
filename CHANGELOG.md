@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.1
+
+### Patch Changes
+
+- cf2ac1f: Comment out unused Vosk functions to avoid macOS incompatibility — macOS uses Vosk v0.3.42, while Windows and Linux use v0.3.45.
+
 ## 0.3.0
 
 ### Minor Changes
