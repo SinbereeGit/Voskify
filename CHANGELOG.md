@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.3.0
+
+### Minor Changes
+
+- bc61eab: Add support for macOS.
+
+### Patch Changes
+
+- c85e53c: Add postinstall script that removes unused platform-specific binary directories.
+
 ## 0.2.0
 
 ### Minor Changes
