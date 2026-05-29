@@ -18,7 +18,7 @@ if (!isSupportedWindows && !isSupportedLinux && !isSupportedMac) {
   throw new Error(`Unsupported platform: ${platform} ${arch}.`);
 }
 
-const dllPath = path.join(
+const libPath = path.join(
   __dirname,
   "..",
   "..",
@@ -30,7 +30,7 @@ const dllPath = path.join(
     : "vosk-linux-x86_64-0.3.45",
   `libvosk.${isSupportedWindows ? "dll" : isSupportedMac ? "dylib" : "so"}`,
 );
-const voskLib = koffi.load(dllPath);
+const voskLib = koffi.load(libPath);
 
 // The vosk C API functions are in the same order as in the `vosk_api.h` header file of `vosk-win64-0.3.45`.
 // Note: We only have version 0.3.42 for macOS, so some functions may be missing macOS version, which is why we comment out the functions that we don't use here, to avoid compatibility issues.
