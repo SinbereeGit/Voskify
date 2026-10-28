@@ -6,7 +6,7 @@ import fs from "fs";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-if (!__dirname.includes('node_modules')) {
+if (!__dirname.includes("node_modules")) {
   process.exit(0);
 }
 

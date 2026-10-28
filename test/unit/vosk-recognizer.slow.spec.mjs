@@ -5,7 +5,13 @@ import {
   loadWavFile,
   VoskRecognizer,
 } from "../../src/vosk-wrapper/vosk-recognizer.mjs";
-import { MODEL_PATH, TEST_AUDIO_FILE, TEST_AUDIO_TEXT, TEST_GRAMMAR_LIST, TEST_AUDIO_TEXT_WITH_GRAMMAR_LIST } from "./consts.mjs";
+import {
+  MODEL_PATH,
+  TEST_AUDIO_FILE,
+  TEST_AUDIO_TEXT,
+  TEST_GRAMMAR_LIST,
+  TEST_AUDIO_TEXT_WITH_GRAMMAR_LIST,
+} from "./consts.mjs";
 
 describe(VoskRecognizer.name, function () {
   this.timeout(5000);
@@ -22,7 +28,9 @@ describe(VoskRecognizer.name, function () {
   it("support grammar list", async function () {
     const recognizer = voskModel.createRecognizer(TEST_GRAMMAR_LIST);
     await recognizer.acceptWaveform(TEST_AUDIO_FILE);
-    expect(recognizer.getFinalResult().text).to.be.equal(TEST_AUDIO_TEXT_WITH_GRAMMAR_LIST);
+    expect(recognizer.getFinalResult().text).to.be.equal(
+      TEST_AUDIO_TEXT_WITH_GRAMMAR_LIST
+    );
     recognizer.free();
   });
 
@@ -87,7 +95,7 @@ describe(VoskRecognizer.name, function () {
       const recognizer = voskModel.createRecognizer();
       await recognizer.acceptWaveform(TEST_AUDIO_FILE);
       expect(recognizer.getPartialResult().partial).not.to.be.equal(
-        TEST_AUDIO_TEXT,
+        TEST_AUDIO_TEXT
       );
       expect(recognizer.getFinalResult().text).to.be.equal(TEST_AUDIO_TEXT);
       recognizer.free();

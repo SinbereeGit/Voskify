@@ -34,7 +34,7 @@ export async function loadWavFile(wavFilePath) {
   return Buffer.from(
     audioData.buffer,
     audioData.byteOffset,
-    audioData.byteLength,
+    audioData.byteLength
   );
 }
 
@@ -52,7 +52,7 @@ export class VoskRecognizer {
     else
       this.recognizer = VoskFunctions.vosk_recognizer_new(
         model,
-        VOSK_SAMPLE_RATE,
+        VOSK_SAMPLE_RATE
       );
   }
 
@@ -72,7 +72,7 @@ export class VoskRecognizer {
   reset() {
     if (!this.recognizer)
       throw new Error(
-        "Recognizer is not initialized or has already been freed.",
+        "Recognizer is not initialized or has already been freed."
       );
 
     VoskFunctions.vosk_recognizer_reset(this.recognizer);
@@ -86,7 +86,7 @@ export class VoskRecognizer {
   async acceptWaveform(wavFilePathOrBuffer) {
     if (!this.recognizer)
       throw new Error(
-        "Recognizer is not initialized or has already been freed.",
+        "Recognizer is not initialized or has already been freed."
       );
 
     let pcmBuffer;
@@ -96,14 +96,14 @@ export class VoskRecognizer {
       pcmBuffer = await loadWavFile(wavFilePathOrBuffer);
     } else {
       throw new Error(
-        "Invalid input: expected a file path string or a Buffer containing PCM data.",
+        "Invalid input: expected a file path string or a Buffer containing PCM data."
       );
     }
 
     return VoskFunctions.vosk_recognizer_accept_waveform(
       this.recognizer,
       pcmBuffer,
-      pcmBuffer.length,
+      pcmBuffer.length
     );
   }
 
@@ -113,11 +113,11 @@ export class VoskRecognizer {
   getPartialResult() {
     if (!this.recognizer)
       throw new Error(
-        "Recognizer is not initialized or has already been freed.",
+        "Recognizer is not initialized or has already been freed."
       );
 
     return JSON.parse(
-      VoskFunctions.vosk_recognizer_partial_result(this.recognizer),
+      VoskFunctions.vosk_recognizer_partial_result(this.recognizer)
     );
   }
 
@@ -127,7 +127,7 @@ export class VoskRecognizer {
   getResult() {
     if (!this.recognizer)
       throw new Error(
-        "Recognizer is not initialized or has already been freed.",
+        "Recognizer is not initialized or has already been freed."
       );
 
     return JSON.parse(VoskFunctions.vosk_recognizer_result(this.recognizer));
@@ -139,11 +139,11 @@ export class VoskRecognizer {
   getFinalResult() {
     if (!this.recognizer)
       throw new Error(
-        "Recognizer is not initialized or has already been freed.",
+        "Recognizer is not initialized or has already been freed."
       );
 
     return JSON.parse(
-      VoskFunctions.vosk_recognizer_final_result(this.recognizer),
+      VoskFunctions.vosk_recognizer_final_result(this.recognizer)
     );
   }
 }

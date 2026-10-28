@@ -28,7 +28,7 @@ const libPath = path.join(
     : isSupportedMac
     ? "vosk-osx-0.3.42"
     : "vosk-linux-x86_64-0.3.45",
-  `libvosk.${isSupportedWindows ? "dll" : isSupportedMac ? "dylib" : "so"}`,
+  `libvosk.${isSupportedWindows ? "dll" : isSupportedMac ? "dylib" : "so"}`
 );
 const voskLib = koffi.load(libPath);
 
@@ -155,7 +155,7 @@ export const VoskFunctions = {
   vosk_recognizer_accept_waveform: voskLib.func(
     "vosk_recognizer_accept_waveform",
     "int",
-    ["void *", "const char *", "int"],
+    ["void *", "const char *", "int"]
   ),
 
   // /**
@@ -182,7 +182,7 @@ export const VoskFunctions = {
   vosk_recognizer_result: voskLib.func(
     "vosk_recognizer_result",
     "const char *",
-    ["void *"],
+    ["void *"]
   ),
 
   /**
@@ -191,7 +191,7 @@ export const VoskFunctions = {
   vosk_recognizer_partial_result: voskLib.func(
     "vosk_recognizer_partial_result",
     "const char *",
-    ["void *"],
+    ["void *"]
   ),
 
   /**
@@ -200,7 +200,7 @@ export const VoskFunctions = {
   vosk_recognizer_final_result: voskLib.func(
     "vosk_recognizer_final_result",
     "const char *",
-    ["void *"],
+    ["void *"]
   ),
 
   /**
