@@ -20,13 +20,14 @@ export class VoskModel {
   }
 
   /**
+   * @param {string[] | null} [grammar]
    * @returns {VoskRecognizer}
    */
-  createRecognizer() {
+  createRecognizer(grammar = null) {
     if (!this.model)
       throw new Error("Model is not initialized or has already been freed.");
 
-    const recognizer = new VoskRecognizer(this.model);
+    const recognizer = new VoskRecognizer(this.model, grammar);
     this.recognizers.push(recognizer);
     return recognizer;
   }

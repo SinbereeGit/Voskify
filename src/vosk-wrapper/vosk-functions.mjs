@@ -89,14 +89,14 @@ export const VoskFunctions = {
   //   "void *",
   // ]),
 
-  // /**
-  //  * `(void *model, float sample_rate, const char *grammar) => void *`
-  //  */
-  // vosk_recognizer_new_grm: voskLib.func("vosk_recognizer_new_grm", "void *", [
-  //   "void *",
-  //   "float",
-  //   "const char *",
-  // ]),
+  /**
+   * `(void *model, float sample_rate, const char *grammar) => void *`
+   */
+  vosk_recognizer_new_grm: voskLib.func("vosk_recognizer_new_grm", "void *", [
+    "void *",
+    "float",
+    "const char *",
+  ]),
 
   // /**
   //  * `(void *recognizer, void *spk_model) => void`

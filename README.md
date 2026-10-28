@@ -26,6 +26,8 @@ import { VoskModel } from "voskify";
 
 const model = new VoskModel("./models/vosk-model-small-en-us-0.15");
 const recognizer = model.createRecognizer();
+// or create recogizer with grammar list, for example
+// const recognizer = model.createRecognizer(["one two three", "[unk]"]);
 
 await recognizer.acceptWaveform("./audio/sample.wav");
 

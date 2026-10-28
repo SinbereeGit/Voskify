@@ -39,11 +39,21 @@ export async function loadWavFile(wavFilePath) {
 }
 
 export class VoskRecognizer {
-  constructor(model) {
-    this.recognizer = VoskFunctions.vosk_recognizer_new(
-      model,
-      VOSK_SAMPLE_RATE,
-    );
+  /**
+   * @param {string[] | null} [grammar]
+   */
+  constructor(model, grammar = null) {
+    if (grammar)
+      this.recognizer = VoskFunctions.vosk_recognizer_new_grm(
+        model,
+        VOSK_SAMPLE_RATE,
+        JSON.stringify(grammar)
+      );
+    else
+      this.recognizer = VoskFunctions.vosk_recognizer_new(
+        model,
+        VOSK_SAMPLE_RATE,
+      );
   }
 
   /**
